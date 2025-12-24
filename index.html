@@ -5,15 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="IvoLabs - GitHub Organisation von Ivo Ternis">
     <title>IvoLabs</title>
-    
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 
     <style>
-        /* * Catppuccin Mocha Palette 
-         * Referenz: https://github.com/catppuccin/catppuccin 
-         */
         :root {
             --ctp-base: #1e1e2e;
             --ctp-mantle: #181825;
@@ -44,9 +41,10 @@
             display: flex;
             flex-direction: column;
             min-height: 100vh;
+            overflow: hidden;
+            position: relative;
         }
 
-        /* Layout Container */
         .container {
             width: 100%;
             max-width: 1000px;
@@ -54,10 +52,11 @@
             padding: 0 20px;
         }
 
-        /* Header Area */
         header {
             padding: 80px 0 40px;
             text-align: center;
+            z-index: 1;
+            position: relative;
         }
 
         h1 {
@@ -92,13 +91,13 @@
             background-color: var(--ctp-surface1);
             border-color: var(--ctp-blue);
             color: var(--ctp-blue);
-            transform: translateY(-2px);
         }
 
-        /* Main Content */
         main {
             flex: 1;
             padding: 40px 0;
+            z-index: 1;
+            position: relative;
         }
 
         .grid {
@@ -107,20 +106,18 @@
             gap: 2rem;
         }
 
-        /* Person Cards */
         .card {
             background-color: var(--ctp-mantle);
             border: 1px solid var(--ctp-surface0);
             border-radius: 16px;
             padding: 2rem;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            transition: box-shadow 0.2s ease;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
         }
 
         .card:hover {
-            transform: translateY(-5px);
             box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
             border-color: var(--ctp-overlay0);
         }
@@ -170,7 +167,6 @@
             color: var(--ctp-text);
         }
 
-        /* Footer */
         footer {
             text-align: center;
             padding: 40px 0;
@@ -178,6 +174,8 @@
             font-size: 0.9rem;
             border-top: 1px solid var(--ctp-surface0);
             margin-top: auto;
+            z-index: 1;
+            position: relative;
         }
 
         footer a {
@@ -187,6 +185,28 @@
 
         footer a:hover {
             color: var(--ctp-blue);
+        }
+
+        .snowflake {
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: snowfall linear infinite;
+        }
+
+        @keyframes snowfall {
+            0% {
+                transform: translateY(-10vh);
+                opacity: 0;
+            }
+            20% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh);
+                opacity: 0.6;
+            }
         }
     </style>
 </head>
@@ -207,7 +227,7 @@
             <article class="card">
                 <div>
                     <h2>Ivo Ternis</h2>
-                    <p>Founder & Lead Developer.</p>
+                    <p>"Null"</p>
                 </div>
                 <div class="links">
                     <a href="https://IvoTernis.de" class="btn btn-primary" target="_blank">IvoTernis.de</a>
@@ -218,11 +238,12 @@
             <article class="card">
                 <div>
                     <h2>Fabian Ternis</h2>
-                    <p>Developer & Engineering.</p>
+                    <p>"Null"</p>
                 </div>
                 <div class="links">
                     <a href="https://fabianternis.de" class="btn btn-primary" target="_blank">Webseite (DE)</a>
                     <a href="https://fabianternis.dev" class="btn btn-secondary" target="_blank">Portfolio (EN)</a>
+                    <a href="https://github.com/michaelninder" class="btn btn-secondary" target="_blank">GitHub</a>
                 </div>
             </article>
         </div>
@@ -230,9 +251,31 @@
 
     <footer>
         <div class="container">
-            <p>&copy; 2024 IvoLabs. Hosting auf <a href="https://ivolabs.ivoternis.de">ivolabs.ivoternis.de</a>.</p>
+            <p>&copy; 2025 IvoLabs. Hosting auf <a href="https://ivolabs.ivoternis.de">ivolabs.ivoternis.de</a>.</p>
         </div>
     </footer>
+
+    <script>
+        function createSnowflake() {
+            const snowflake = document.createElement('div');
+            snowflake.classList.add('snowflake');
+            document.body.appendChild(snowflake);
+
+            const size = Math.random() * 5 + 2 + 'px'; // 2-7px
+            snowflake.style.width = size;
+            snowflake.style.height = size;
+            snowflake.style.left = Math.random() * 100 + 'vw';
+            snowflake.style.animationDuration = Math.random() * 5 + 5 + 's'; // 5-10s
+            snowflake.style.animationDelay = Math.random() * -5 + 's'; // Start at different times
+            snowflake.style.opacity = Math.random() * 0.5 + 0.5; // 0.5-1
+
+            setTimeout(() => {
+                snowflake.remove();
+            }, parseFloat(snowflake.style.animationDuration) * 1000);
+        }
+
+        setInterval(createSnowflake, 200); // Create a new snowflake every 200ms
+    </script>
 
 </body>
 </html>
