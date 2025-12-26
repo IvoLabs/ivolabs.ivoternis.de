@@ -107,7 +107,8 @@
         }
 
         .card {
-            background-color: var(--ctp-mantle);
+            background-color: rgba(24, 24, 37, 0.4);
+            backdrop-filter: blur(8px);
             border: 1px solid var(--ctp-surface0);
             border-radius: 16px;
             padding: 2rem;
@@ -261,20 +262,20 @@
             snowflake.classList.add('snowflake');
             document.body.appendChild(snowflake);
 
-            const size = Math.random() * 5 + 2 + 'px'; // 2-7px
+            const size = Math.random() * 5 + 2 + 'px';
             snowflake.style.width = size;
             snowflake.style.height = size;
             snowflake.style.left = Math.random() * 100 + 'vw';
-            snowflake.style.animationDuration = Math.random() * 5 + 5 + 's'; // 5-10s
-            snowflake.style.animationDelay = Math.random() * -5 + 's'; // Start at different times
-            snowflake.style.opacity = Math.random() * 0.5 + 0.5; // 0.5-1
+            snowflake.style.animationDuration = Math.random() * 5 + 5 + 's';
+            snowflake.style.animationDelay = Math.random() * -5 + 's';
+            snowflake.style.opacity = Math.random() * 0.5 + 0.5;
 
             setTimeout(() => {
                 snowflake.remove();
             }, parseFloat(snowflake.style.animationDuration) * 1000);
         }
 
-        setInterval(createSnowflake, 200); // Create a new snowflake every 200ms
+        setInterval(createSnowflake, 200);
     </script>
 
 </body>
